@@ -1,0 +1,89 @@
+{
+  "resource_path": "../../NavGraph/app/apktool-output/com.owncloud.android_215",
+  "model_path": "../../NavGraph/app/model/com.owncloud.android_215",
+  "launch_setting": {
+    "default": [
+      "com.owncloud.android",
+      "com.owncloud.android.ui.activity.SplashActivity"
+    ]
+  },
+  "transfer_setting": {
+    "aug_TestSearch": {
+      "web_test_path": "web_test/owncloud/aug_TestSearch.py",
+      "android_test_path": "android_test/owncloud/generated",
+      "use_stopwords": true,
+      "expand_btn_to_text": false,
+      "reset_data": false
+    },
+    "aug_TestSearchDetail": {
+      "web_test_path": "web_test/owncloud/aug_TestSearchDetail.py",
+      "android_test_path": "android_test/owncloud/generated",
+      "use_stopwords": true,
+      "expand_btn_to_text": false,
+      "reset_data": false
+    },
+    "aug_TestFileDetail": {
+      "web_test_path": "web_test/owncloud/aug_TestFileDetail.py",
+      "android_test_path": "android_test/owncloud/generated",
+      "use_stopwords": true,
+      "expand_btn_to_text": false,
+      "reset_data": false
+    },
+    "aug_TestCreateLink": {
+      "web_test_path": "web_test/owncloud/aug_TestCreateLink.py",
+      "android_test_path": "android_test/owncloud/generated",
+      "use_stopwords": true,
+      "expand_btn_to_text": false,
+      "reset_data": false
+    },
+    "aug_TestRename": {
+      "web_test_path": "web_test/owncloud/aug_TestRename.py",
+      "android_test_path": "android_test/owncloud/generated",
+      "use_stopwords": true,
+      "expand_btn_to_text": false,
+      "reset_data": false
+    },
+    "aug_TestDelete": {
+      "web_test_path": "web_test/owncloud/aug_TestDelete.py",
+      "android_test_path": "android_test/owncloud/generated",
+      "use_stopwords": true,
+      "expand_btn_to_text": false,
+      "reset_data": false
+    },
+    "aug_TestUpload": {
+      "web_test_path": "web_test/owncloud/aug_TestUpload.py",
+      "android_test_path": "android_test/owncloud/generated",
+      "use_stopwords": true,
+      "expand_btn_to_text": false,
+      "reset_data": false
+    },
+    "aug_TestUploadExisted": {
+      "web_test_path": "web_test/owncloud/aug_TestUploadExisted.py",
+      "android_test_path": "android_test/owncloud/generated",
+      "use_stopwords": true,
+      "expand_btn_to_text": false,
+      "reset_data": false
+    },
+    "aug_TestSharedLink": {
+      "web_test_path": "web_test/owncloud/aug_TestSharedLink.py",
+      "android_test_path": "android_test/owncloud/generated",
+      "use_stopwords": true,
+      "expand_btn_to_text": false,
+      "reset_data": false
+    },
+    "aug_TestViewStorage": {
+      "web_test_path": "web_test/owncloud/aug_TestViewStorage.py",
+      "android_test_path": "android_test/owncloud/generated",
+      "use_stopwords": true,
+      "expand_btn_to_text": false,
+      "reset_data": false
+    },
+    "aug_TestRestore": {
+      "web_test_path": "web_test/owncloud/aug_TestRestore.py",
+      "android_test_path": "android_test/owncloud/generated",
+      "use_stopwords": true,
+      "expand_btn_to_text": false,
+      "reset_data": false
+    }
+  }
+}

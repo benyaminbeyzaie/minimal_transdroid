@@ -1,0 +1,15 @@
+Appium-Python-Client
+astor
+beautifulsoup4
+editdistance
+Flask
+Flask-RESTful
+gensim
+html5lib
+lxml
+numpy
+requests
+scipy
+selenium
+networkx
+ipdb

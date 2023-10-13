@@ -1,0 +1,43 @@
+[
+  {
+    "tag": "span",
+    "id": "",
+    "text": ["Photos"],
+    "prev_sibling_text": [],
+    "next_sibling_text": [],
+    "action": "is_displayed"
+  },
+  {
+    "tag": "span",
+    "id": "",
+    "text": ["Photos"],
+    "prev_sibling_text": [],
+    "next_sibling_text": [],
+    "action": "click"
+  },
+  {
+    "tag": "input",
+    "id": "searchbox",
+    "text": ["query"],
+    "prev_sibling_text": [],
+    "next_sibling_text": [],
+    "action": "click"
+  },
+  {
+    "tag": "input",
+    "id": "searchbox",
+    "text": ["query"],
+    "prev_sibling_text": [],
+    "next_sibling_text": [],
+    "action": "send_keys",
+    "action_args": ["ort"]
+  },
+  {
+    "tag": "span",
+    "id": "",
+    "text": ["Portugal"],
+    "prev_sibling_text": [],
+    "next_sibling_text": ["jpg"],
+    "action": "is_displayed"
+  }
+]
