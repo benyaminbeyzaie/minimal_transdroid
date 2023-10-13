@@ -1,10 +1,16 @@
+import json
 from bs4 import BeautifulSoup, NavigableString
 import re
+
+import requests
 
 # local imports
 from EventAction import EventAction
 from StrUtil import StrUtil
 from logger import logger
+import os
+
+os.environ["NO_PROXY"] = "127.0.0.1"
 
 
 class WidgetUtil:
@@ -242,93 +248,21 @@ class WidgetUtil:
         else:
             assert False, "Unsupported Action"
         logger.info(f"{len(candidates)} candidate widgets to sort...")
-        import ipdb
 
-        ipdb.set_trace()
-        candidates = [
-            (c, WidgetUtil.similarity(src_event, c, use_stopwords)) for c in candidates
+        data = {"src_event": src_event, "candidates": candidates}
+
+        resp = requests.post(
+            url="http://127.0.0.1:8000/api/get_candidates",
+            json=data,
+            headers={"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"},
+        )
+        candidates = json.loads(resp.json()["result"])
+
+        candidate_tuples = [
+            (candidate, candidate["sim_score"]) for candidate in candidates
         ]
-        candidates.sort(key=lambda x: x[1], reverse=True)
-        logger.info(f"Sorting finished")
-        candidates = [(c, score) for (c, score) in candidates[:top] if score > 0]
-        return candidates
 
-    @classmethod
-    def similarity(cls, src_event, tgt_event, use_stopwords=True):
-        # "id" and "resource-id" are used in the events interchangeably
-        rid_added_src, rid_added_tgt = False, False
-        if "id" in src_event and src_event["id"]:
-            src_event["resource-id"] = src_event["id"]
-            rid_added_src = True
-        if "id" in tgt_event and tgt_event["id"]:
-            tgt_event["resource-id"] = tgt_event["id"]
-            rid_added_tgt = True
-
-        attrs = {
-            "resource-id": 1,
-            "text": 1,
-            "content-desc": 1,
-            "parent_text": 1,
-            "sibling_text": 0.5,
-        }
-        # return minimum for widgets without textual info
-        if not any(True for a in attrs if a in src_event and src_event[a]):
-            return -1
-        if not any(True for a in attrs if a in tgt_event and tgt_event[a]):
-            return -1
-
-        scores = []
-        for attr, weight in attrs.items():
-            if (attr not in src_event) or (attr not in tgt_event):
-                continue
-            src_tokens = StrUtil.tokenize(attr, src_event[attr], use_stopwords)
-            tgt_tokens = StrUtil.tokenize(attr, tgt_event[attr], use_stopwords)
-            # tgt_tokens = StrUtil.expand_tokens(tgt_event['class'], attr, tgt_tokens)
-            score = StrUtil.w2v_score(src_tokens, tgt_tokens)
-            if not score:
-                scores.append(0)
-                continue
-            score *= weight
-            # if no text and no parent_text, sibling text is more important
-            # (a22-a23-b21: srcIdx 1; a25-a23-b21: srcIdx 1)
-            if attr == "sibling_text":
-                if not all(
-                    [
-                        src_event["text"] + src_event["parent_text"],
-                        tgt_event["text"] + tgt_event["parent_text"],
-                    ]
-                ):
-                    score *= 2
-            scores.append(score)
-
-        # cross check textual fields
-        attr_pairs = [
-            ("text", "parent_text"),
-            ("parent_text", "text"),
-            ("content-desc", "text"),
-            ("text", "content-desc"),
-            ("sibling_text", "text"),
-            ("text", "sibling_text"),
-        ]
-        cross_score = -1
-        for a1, a2 in attr_pairs:
-            if a1 in src_event and src_event[a1] and a2 in tgt_event and tgt_event[a2]:
-                src_tokens = StrUtil.tokenize(a1, src_event[a1], use_stopwords)
-                tgt_tokens = StrUtil.tokenize(a2, tgt_event[a2], use_stopwords)
-                # tgt_tokens = StrUtil.expand_tokens(tgt_event['class'], a2, tgt_tokens)
-                score = StrUtil.w2v_score(src_tokens, tgt_tokens)
-                if not score:
-                    continue
-                cross_score = max(cross_score, score)
-        if cross_score > -1:
-            scores.append(cross_score)  # weight = 1
-
-        if rid_added_src:
-            src_event.pop("resource-id", None)
-        if rid_added_tgt:
-            tgt_event.pop("resource-id", None)
-
-        return sum(scores) / len(scores)
+        return candidate_tuples
 
     @classmethod
     def is_equal(cls, w1, w2):

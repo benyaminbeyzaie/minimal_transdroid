@@ -1,0 +1,396 @@
+{
+  "android.widget.Button": [
+    [
+      {
+        "resource-id": "login_button",
+        "text": "LOG IN",
+        "node": "org.wikipedia.login.LoginActivity"
+      },
+      "default"
+    ],
+    [
+      {
+        "resource-id": "button_signin",
+        "text": "Sign In",
+        "node": "com.etsy.android.ui.user.auth.SignInActivity"
+      },
+      "default"
+    ],
+    [
+      {
+        "resource-id": "btn_link",
+        "text": "Get Started",
+        "node": "com.etsy.android.ui.homescreen.HomescreenMainActivity"
+      },
+      1
+    ],
+    [
+      {
+        "resource-id": "switch_to_register",
+        "text": "Don't have an account? Register",
+        "node": "com.etsy.android.ui.user.auth.SignInActivity"
+      },
+      1
+    ],
+    [
+      {
+        "resource-id": "followers_button",
+        "text": "0 Followers",
+        "node": "com.etsy.android.ui.FragmentHolderSingleActivity"
+      },
+      1
+    ],
+    [
+      {
+        "resource-id": "fragment_log_in_sign_up_groupon_button",
+        "text": "Sign in with Groupon",
+        "node": "com.groupon.login.main.activities.Login"
+      },
+      "default"
+    ],
+    [
+      {
+        "resource-id": "button1",
+        "text": "OK",
+        "node": "com.owncloud.android.ui.activity.FileDisplayActivity"
+      },
+      2
+    ]
+  ],
+  "android.widget.ImageButton": [
+    [
+      {
+        "content-desc": "Open navigation drawer",
+        "node": "com.fabienli.dokuwiki.MainActivity"
+      },
+      1
+    ]
+  ],
+  "android.widget.CheckedTextView": [
+    [
+      {
+        "resource-id": "design_menu_item_text",
+        "id-prefix": "com.fabienli.dokuwiki:id/",
+        "node": "com.fabienli.dokuwiki.MainActivity"
+      },
+      2
+    ]
+  ],
+  "android.widget.TextView": [
+    [
+      {
+        "resource-id": "action_title",
+        "id-prefix": "org.wordpress.android:id/",
+        "node": "org.wordpress.android.ui.main.WPMainActivity"
+      },
+      "default"
+    ],
+    [
+      {
+        "resource-id": "my_site_title_label",
+        "id-prefix": "org.wordpress.android:id/",
+        "node": "org.wordpress.android.ui.main.WPMainActivity"
+      },
+      "default"
+    ],
+    [
+      {
+        "resource-id": "title",
+        "id-prefix": "org.wordpress.android:id/",
+        "text": "Switch to block editor",
+        "node": "org.wordpress.android.ui.posts.EditPostActivity"
+      },
+      "default"
+    ],
+    [
+      {
+        "resource-id": "title",
+        "id-prefix": "org.wordpress.android:id/",
+        "text": "Save",
+        "node": "org.wordpress.android.ui.posts.EditPostActivity"
+      },
+      15
+    ],
+    [
+      {
+        "resource-id": "title",
+        "text": "Preview",
+        "node": "org.wordpress.android.ui.posts.EditPostActivity"
+      },
+      3
+    ],
+    [
+      {
+        "resource-id": "",
+        "id-prefix": "",
+        "text": "DRAFTS",
+        "node": "org.wordpress.android.ui.posts.PostsListActivity"
+      },
+      1
+    ],
+    [
+      {
+        "resource-id": "page_list_item_description",
+        "text": "Japanese multinational conglomerate",
+        "node": "org.wikipedia.search.SearchActivity"
+      },
+      3
+    ],
+    [
+      {
+        "resource-id": "page_toc_item_text",
+        "text": "Audio recording",
+        "node": "org.wikipedia.page.PageActivity"
+      },
+      3
+    ],
+    [
+      {
+        "resource-id": "localized_language_name",
+        "text": "Alemannisch",
+        "node": "org.wikipedia.language.LangLinksActivity"
+      },
+      3
+    ],
+    [
+      {
+        "resource-id": "",
+        "text": "Notifications",
+        "node": "org.wikipedia.main.MainActivity"
+      },
+      3
+    ],
+    [
+      {
+        "resource-id": "help_button_name",
+        "text": "Help Center",
+        "node": "com.etsy.android.ui.FragmentHolderSingleActivity",
+        "action": "click"
+      },
+      "default"
+    ],
+    [
+      {
+        "text": "For You",
+        "node": "com.groupon.home.main.activities.Carousel",
+        "action": "click"
+      },
+      "default"
+    ],
+    [
+      {
+        "resource-id": "title",
+        "text": "Customer Support",
+        "node": "com.groupon.home.main.activities.Carousel",
+        "action": "click"
+      },
+      "default"
+    ],
+    [
+      {
+        "resource-id": "in_app_message_title",
+        "text": "Deal of the Day",
+        "node": "com.groupon.home.main.activities.Carousel",
+        "action": "click"
+      },
+      "default"
+    ],
+    [
+      {
+        "resource-id": "search_suggestions_list_item",
+        "node": "com.groupon.globallocation.main.activity.CitiesSlideIn",
+        "action": "click"
+      },
+      10
+    ],
+    [
+      {
+        "resource-id": "categoryCardTitle",
+        "text": "Hotels & Travel",
+        "node": "com.groupon.home.main.activities.Carousel",
+        "action": "click"
+      },
+      10
+    ],
+    [
+      {
+        "resource-id": "title",
+        "text": "My Groupon+ Deals",
+        "node": "com.groupon.home.main.activities.Carousel",
+        "action": "click"
+      },
+      "default"
+    ],
+    [
+      {
+        "resource-id": "Filename",
+        "node": "com.owncloud.android.ui.activity.FileDisplayActivity",
+        "action": "click"
+      },
+      3
+    ],
+    [
+      {
+        "resource-id": "title",
+        "text": "Refresh Page",
+        "node": "com.fabienli.dokuwiki.MainActivity",
+        "action": "click"
+      },
+      3
+    ],
+    [
+      {
+        "resource-id": "title",
+        "node": "net.dreambits.hackernews.MainActivity",
+        "action": "click"
+      },
+      1
+    ]
+  ],
+  "android.widget.EditText": [
+    [
+      {
+        "text": "Start writing…",
+        "action": "click",
+        "node": "org.wordpress.android.ui.posts.EditPostActivity"
+      },
+      1
+    ],
+    [
+      {
+        "resource-id": "search_src_text",
+        "text": "Search Wikipedia",
+        "node": "org.wikipedia.search.SearchActivity",
+        "action": "send_keys"
+      },
+      2
+    ],
+    [
+      {
+        "resource-id": "search_src_text",
+        "node": "com.etsy.android.ui.homescreen.HomescreenMainActivity",
+        "action": "send_keys",
+        "action_args": ["KEY_ENTER"]
+      },
+      2
+    ],
+    [
+      {
+        "resource-id": "action_bar_search_edittext",
+        "node": "com.groupon.globallocation.main.activity.CitiesSlideIn",
+        "action": "send_keys"
+      },
+      2
+    ],
+    [
+      {
+        "resource-id": "search_src_text",
+        "node": "com.fabienli.dokuwiki.MainActivity",
+        "action": "send_keys",
+        "action_args": ["KEY_ENTER"]
+      },
+      2
+    ]
+  ],
+  "android.widget.ImageView": [
+    [
+      {
+        "resource-id": "action_icon",
+        "id-prefix": "org.wordpress.android:id/",
+        "node": "org.wordpress.android.ui.main.WPMainActivity"
+      },
+      "default"
+    ],
+    [
+      {
+        "resource-id": "article_menu_show_toc",
+        "content-desc": "Table of Contents",
+        "node": "org.wikipedia.page.PageActivity"
+      },
+      2
+    ],
+    [
+      {
+        "resource-id": "article_menu_change_language",
+        "content-desc": "Change language",
+        "node": "org.wikipedia.page.PageActivity"
+      },
+      2
+    ],
+    [
+      {
+        "resource-id": "drawer_icon_menu",
+        "content-desc": "Open main navigation drawer",
+        "node": "org.wikipedia.main.MainActivity"
+      },
+      1
+    ],
+    [
+      {
+        "resource-id": "search_button",
+        "content-desc": "Search",
+        "node": "com.owncloud.android",
+        "action": "click"
+      },
+      1
+    ],
+    [
+      {
+        "resource-id": "photo_view",
+        "node": "com.owncloud.android.ui.preview.PreviewImageActivity",
+        "action": "click"
+      },
+      1
+    ]
+  ],
+  "android.view.View": [
+    [
+      {
+        "text": " 1 Comment in moderation"
+      },
+      2
+    ],
+    [
+      {
+        "text": "Pending (1)"
+      },
+      2
+    ],
+    [
+      {
+        "text": "Approved (1)"
+      },
+      2
+    ],
+    [
+      {
+        "text": "Spam (1)"
+      },
+      2
+    ],
+    [
+      {
+        "text": "Trash (1)"
+      },
+      2
+    ],
+    [
+      {
+        "text": " Customize"
+      },
+      "default"
+    ],
+    [
+      {
+        "text": "Change theme"
+      },
+      2
+    ],
+    [
+      {
+        "text": "Installed themes "
+      },
+      2
+    ]
+  ]
+}

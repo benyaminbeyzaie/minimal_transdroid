@@ -137,6 +137,7 @@ class Explorer:
                         self.config["use_stopwords"],
                         self.config["expand_btn_to_text"],
                     )
+
                     w_candidates = self.prioritize(
                         w_candidates, current_activity, src_event
                     )
@@ -341,7 +342,7 @@ class Explorer:
             w["steppings"] = steppings
         w["package"] = self.runner.get_current_package()
         w["node"] = self.runner.get_current_activity(w["package"])
-        w["sim_score"] = WidgetUtil.similarity(w, src_event)
+        # w["sim_score"] = WidgetUtil.similarity(w, src_event)
         return w, False
 
     def run_stepping_and_update(self, steppings, w_stepping, action, graph=None):

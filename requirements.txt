@@ -13,3 +13,7 @@ scipy
 selenium
 networkx
 ipdb
+jsonify
+openai
+python-dotenv
+Flask-Caching
