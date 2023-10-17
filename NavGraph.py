@@ -1,9 +1,8 @@
 import networkx as nx
 from os.path import join, exists
 import json
-
-# local imports
-from logger import logger
+import matplotlib.pyplot as plt
+import os
 
 
 class NavGraph:
@@ -13,6 +12,7 @@ class NavGraph:
 
     def __init__(self, model_path):
         self.G = nx.MultiDiGraph()
+        self.graphName = model_path.rpartition("/")[-1]
         if not exists(join(model_path, "graph.txt")):
             return
         with open(join(model_path, "rIdToName.json"), "r") as f:
@@ -48,24 +48,17 @@ class NavGraph:
                                     ":".join([e_type, "ID", rid_name[r_id], "CLICK"]),
                                 )
 
-    def add_edge(self, n_from, n_to, label):
-        prev_edges = len(self.G.edges)
-        self.G.add_edge(n_from, n_to, label)
-        current_edges = len(self.G.edges)
-        if current_edges > prev_edges:
-            logger.info(f"New edge added: {n_from} -> {n_to} ({label})")
-
     def paths_between_nodes(self, n_from, n_to):
         if n_from not in self.G or n_to not in self.G:
             return []
-        pmap = {}  # hash map to avoid duplicate path
+        paths_map = {}  # hash map to avoid duplicate path
         if n_from == n_to:
             if self.G.get_edge_data(n_from, n_to):
                 events = set(self.G.get_edge_data(n_from, n_to).keys())
                 for e in events:
                     path = [(n_from, e), (n_to, None)]
-                    pmap[NavGraph.path_signature(path)] = path
-            paths = list(pmap.values())
+                    paths_map[NavGraph.path_signature(path)] = path
+            paths = list(paths_map.values())
             paths.insert(0, [(n_from, None), (n_to, None)])
             return paths
         else:
@@ -79,7 +72,7 @@ class NavGraph:
                     )  # only consider/prioritize one event between u and v for now
                     path.append((u, e))
                 path.append((n_to, None))
-                pmap[NavGraph.path_signature(path)] = path
+                paths_map[NavGraph.path_signature(path)] = path
                 # if n_to has self-loops, repeat them
                 if self.G.get_edge_data(n_to, n_to):
                     events = set(self.G.get_edge_data(n_to, n_to).keys())
@@ -87,10 +80,10 @@ class NavGraph:
                         path_end_repeated = path[:]
                         path_end_repeated.pop()
                         path_end_repeated.append((n_to, e))
-                        pmap[
+                        paths_map[
                             NavGraph.path_signature(path_end_repeated)
                         ] = path_end_repeated
-            paths = list(pmap.values())
+            paths = list(paths_map.values())
             paths.sort(key=lambda x: len(x))  # prefer shorter paths
             return paths
 
@@ -120,41 +113,45 @@ class NavGraph:
         res = g + t + c + o
         return res[0]
 
+    @staticmethod
+    def normalize_activity_name(input_string):
+        parts = input_string.split(".")
+
+        if len(parts) >= 3:
+            result = ".".join(parts[-3:])
+            return result
+        else:
+            return input_string
+
+    def visualize_navgraph(self, save_path):
+        # Create a visualization of the navigation graph
+        pos = nx.spring_layout(self.G, seed=42)
+        plt.figure(figsize=(12, 8))
+        edge_labels = {}
+        for u, v, _ in self.G.edges(data=True):
+            # u = self.normalize_activity_name(u)
+            # v = self.normalize_activity_name(v)
+            edge_labels[(u, v)] = ""
+
+        nx.draw(
+            self.G,
+            pos,
+            with_labels=True,
+            node_size=500,
+            node_color="lightblue",
+            font_size=8,
+        )
+        nx.draw_networkx_edge_labels(
+            self.G, pos, edge_labels=edge_labels, font_size=8, font_color="red"
+        )
+        plt.title("Navigation Graph Visualization")
+        os.makedirs(os.path.dirname(save_path), exist_ok=True)
+        plt.savefig(save_path)
+        plt.show()
+
 
 if __name__ == "__main__":
-    # G = nx.MultiDiGraph()
-    # G.add_node("a1")
-    # G.add_node("a2")
-    # G.add_edge("a1", "a2", "1")
-    # G.add_edge("a1", "a2", "2")
-    # G.add_edge("a1", "a1", "3")
-    # G.add_edge("a1", "a1", "4")
-    # G.add_node("a1")
-    # G.add_edge("a8", "a8", "5")
-    # print([p for p in nx.all_simple_paths(G, "a1", "a2")])
-    # print(G.number_of_edges("a1", "a9"))
-    # print(G.nodes)
-    # print(G.edges)
-    # print(G.number_of_edges('a1', 'a2'))
-    # print(G.get_edge_data('a1', 'a2'))
-
-    navGraph = NavGraph("../../NavGraph/app/model/wpandroid-14.3-universal")
+    navGraph = NavGraph("../NavGraph/app/model/com.owncloud.android_215")
     print(len(navGraph.G.nodes))
     print(len(navGraph.G.edges))
-    navGraph.add_edge(
-        "org.wordpress.android.ui.accounts.HelpActivity",
-        "org.wordpress.android.ui.accounts.HelpActivity",
-        "label",
-    )
-    print(
-        navGraph.paths_between_nodes(
-            "org.wordpress.android.ui.plugins.PluginDetailActivity",
-            "org.wordpress.android.ui.plugins.PluginDetailActivity",
-        )
-    )
-    print(
-        navGraph.paths_between_nodes(
-            "org.wordpress.android.ui.AppLogViewerActivity",
-            "org.wordpress.android.ui.accounts.HelpActivity",
-        )
-    )
+    navGraph.visualize_navgraph(f"navgraph_visuals/{navGraph.graphName}.png")
