@@ -3,3 +3,5 @@ env
 .vscode
 .env
 *.log
+
+/ben_sample_data
