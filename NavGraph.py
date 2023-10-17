@@ -113,24 +113,18 @@ class NavGraph:
         res = g + t + c + o
         return res[0]
 
-    @staticmethod
-    def normalize_activity_name(input_string):
-        parts = input_string.split(".")
-
-        if len(parts) >= 3:
-            result = ".".join(parts[-3:])
-            return result
-        else:
-            return input_string
-
     def visualize_navgraph(self, save_path):
-        # Create a visualization of the navigation graph
+        """
+        The `visualize_navgraph` function visualizes a navigation graph using the NetworkX library in Python
+        and saves the visualization as an image file.
+
+        :param save_path: The `save_path` parameter is the file path where the visualization of the
+        navigation graph will be saved
+        """
         pos = nx.spring_layout(self.G, seed=42)
         plt.figure(figsize=(12, 8))
         edge_labels = {}
         for u, v, _ in self.G.edges(data=True):
-            # u = self.normalize_activity_name(u)
-            # v = self.normalize_activity_name(v)
             edge_labels[(u, v)] = ""
 
         nx.draw(
