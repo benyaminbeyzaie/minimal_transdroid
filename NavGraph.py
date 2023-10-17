@@ -141,11 +141,10 @@ class NavGraph:
         plt.title("Navigation Graph Visualization")
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
         plt.savefig(save_path)
-        plt.show()
 
 
 if __name__ == "__main__":
     navGraph = NavGraph("../NavGraph/app/model/com.owncloud.android_215")
-    print(len(navGraph.G.nodes))
-    print(len(navGraph.G.edges))
-    navGraph.visualize_navgraph(f"navgraph_visuals/{navGraph.graphName}.png")
+    save_path = f"navgraph_visuals/{navGraph.graphName}.png"
+    navGraph.visualize_navgraph(save_path)
+    print(f"visualization saved at {save_path}")
